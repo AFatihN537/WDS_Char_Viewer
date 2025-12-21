@@ -153,7 +153,7 @@ export class CoverOpening extends Container {
             style : {
                 fill: "#4a424b",
                 fontFamily : 'Ronowstd Gbs',
-                fontSize : 100,
+                fontSize : 60,
                 leading: 4,
                 letterSpacing: -1,
             }
@@ -212,6 +212,7 @@ export class CoverOpening extends Container {
         if(type === StoryTypes.Main || type === StoryTypes.Event){
             this._top_text.text = !!TLChapter ?  `${TLChapter}` : `${chapter}`;
             this._top_text.style.fontFamily = (!!TLChapter ? this._fontFamilies[1] : this._fontFamilies[0]) || this._fontFamilies[0];
+            this._middle_text.style.fontSize = 100;
             this._middle_text.text = `第　${order}　話`;
             this._bottom_text.text = !!TLTitle ?  `${TLTitle}` : `${title}`;
             this._bottom_text.style.fontFamily = (!!TLTitle ? this._fontFamilies[1] : this._fontFamilies[0]) || this._fontFamilies[0];
@@ -219,7 +220,7 @@ export class CoverOpening extends Container {
 
         //side
         if(type === StoryTypes.Side){
-            this._top_text.text = `サイドストーリー${order == 1 ? '(前編)' : '(後編)'}`;
+            this._top_text.text = `サイドストーリー${order == 1 ? '前編' : '後編'}`;
             this._middle_text.text = !!TLTitle ? `${TLTitle}` : `${title}`;
             this._middle_text.style.fontFamily = (!!TLTitle ? this._fontFamilies[1] : this._fontFamilies[0]) || this._fontFamilies[0];
         }
