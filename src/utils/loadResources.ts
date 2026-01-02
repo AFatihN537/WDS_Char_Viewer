@@ -114,19 +114,28 @@ export async function loadResourcesFromEpisode(
 
     // voice
     if (isVoice) {
-        let voicemanifest = await loadJson<string[]>(
-            resPath.manifest(episodeTrack.EpisodeId)
-        );
-        voicemanifest.forEach((VoiceFileName) => {
-            resources[`voice_${VoiceFileName}`] = resPath.voice(
-                episodeTrack.EpisodeId,
-                VoiceFileName
+        try{
+            let voicemanifest = await loadJson<string[]>(
+                resPath.manifest(episodeTrack.EpisodeId)
             );
-        });
+            voicemanifest.forEach((VoiceFileName) => {
+                resources[`voice_${VoiceFileName}`] = resPath.voice(
+                    episodeTrack.EpisodeId,
+                    VoiceFileName
+                );
+            });
+        }
+        catch(err){
+            isVoice = false;
+        }
     }
 
     Assets.addBundle(`${episodeTrack.EpisodeId}_bundle`, resources);
-    return Assets.loadBundle(`${episodeTrack.EpisodeId}_bundle`, callback)
+    await Assets.loadBundle(`${episodeTrack.EpisodeId}_bundle`, callback)
+    return {
+        isVoice: isVoice,
+        resources: resources,
+    }
 }
 
 export function loadPlayerAssetsBundle(name : string, bundle : AssetsBundle["assets"]){

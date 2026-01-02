@@ -107,11 +107,10 @@ export class SoundController {
   _playVoice(FileName: string) {
     //不開聲音
     if (!this._isVoice) {
-      this._voiceDuration = Math.max(3000, this._voiceDuration);
+      this._voiceDuration = Math.max(4500, this._voiceDuration);
       setTimeout(() => {
         this._onVoiceEnd?.();
-        // this._onVoiceEnd = void 0;
-      }, 5000);
+      }, this._voiceDuration);
 
       return;
     }
@@ -126,7 +125,6 @@ export class SoundController {
       let instance = this._currentVoice?.play();
       (instance as IMediaInstance).once("end", () => {
         this._onVoiceEnd?.();
-        // this._onVoiceEnd = void 0;
         this._currentVoice = null;
       });
     }
@@ -137,6 +135,10 @@ export class SoundController {
     this._currentVoice?.stop();
     this._voiceDuration = 0;
     this._seDuration = 0;
+  }
+
+  set voiceDuration(duration: number) {
+    this._voiceDuration = duration;
   }
 
   get voiceDuration() {

@@ -85,7 +85,7 @@ export class AdvPlayer extends Container<any> {
 
     //views
     this._uiView = new UIView().addTo(this, Layer.UILayer);
-    // // this._historyView = new HistoryView().addTo(this, Layer.HistroyLayer);
+    // this._historyView = new HistoryView().addTo(this, Layer.HistroyLayer);
     this._fadeView = new FadeView().addTo(this, Layer.FadeLayer);
     this._movieView = new MovieView().addTo(this, Layer.MovieLayer);
     this._textView = new TextView().addTo(this, Layer.TextLayer);
@@ -93,10 +93,10 @@ export class AdvPlayer extends Container<any> {
     this._characterView = new CharacterView().addTo(this._effectView, Layer.CharacterLayer);
     this._backgroundView = new BackgroundView().addTo(this._effectView, Layer.BackgroundLayer);
 
-    //Cover
+    // Cover
     this._coverOpening = CoverOpening.new().addTo(this, Layer.CoverLayer);
 
-    // //ui button setting
+    // ui button setting
     this._uiView.AutoBtn.addclickFun(() => {
       this._isAuto = this._uiView!.AutoBtn.Pressed;
       if(this._trackPromise && this._isAuto){
@@ -210,12 +210,14 @@ export class AdvPlayer extends Container<any> {
       });
 
       //load故事所需的資源
-      await loadResourcesFromEpisode(
+      let loadResources = await loadResourcesFromEpisode(
         source, 
         this._isVoice, 
         (percentage) => this._coverOpening?.progress(Math.floor(percentage * 100))
       )
       .catch(() => this._coverOpening?.error());
+
+      this.isVoice = loadResources?.isVoice ?? this._isVoice;
       
       res(this._episode);
     }));
@@ -294,6 +296,9 @@ export class AdvPlayer extends Container<any> {
     this._characterView.preCreateCharacterModel(this.currentTrack);
     this._effectView.execute(this.currentTrack);
     this._backgroundView.execute(this.currentTrack);
+    
+    //設置聲音controller的語音開關
+    this._soundController.isVoice = this._isVoice;
     //當播完聲音後 停止spine的口部動作
     this._soundController.onVoiceEnd = this._characterView.offAllLipSync.bind(this._characterView);
   }
@@ -387,8 +392,12 @@ export class AdvPlayer extends Container<any> {
     this._textView.execute(this.currentTrack);
 
     //聲音處理
+    if(!this.isVoice){
+      //如果沒開聲音 就用文字時間來設定語音時間
+      this._soundController.voiceDuration = (this._textView.typingTotalDuration ?? 0) * 2.5;
+    }
     this._soundController.voice(this.currentTrack);
-
+    
     //準備下一個unit
     this._next();
     this._characterView.preCreateCharacterModel(this.currentTrack);
@@ -397,7 +406,7 @@ export class AdvPlayer extends Container<any> {
     let duration = Math.max(
       this._soundController.voiceDuration, 
       this._soundController.seDuration, 
-      this._textView.typingTotalDuration ?? 0
+      this._textView.typingTotalDuration ?? 0 
     );
 
     // 沒有文字或者同組就自動跳下一個
