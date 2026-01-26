@@ -70,8 +70,6 @@ Audio now capture from streamFilter.
 
 > tip: use `--autoplay-policy=no-user-gesture-required` flag to allow auto play audio without user interaction in Chrome.
 
-> **Notice: all sound will be captured.**
-
 ## Quick Start
 
 ```shell
