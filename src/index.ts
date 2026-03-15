@@ -279,15 +279,23 @@ if (resetBtn) {
     });
 }
 
+// ===== Screenshot button =====
+const screenshotBtn = document.getElementById("screenshot-btn");
+if (screenshotBtn) {
+    screenshotBtn.addEventListener("click", () => {
+        advplayer.hideBackground();
+        app.renderer.render(app.stage);
+        const canvas = app.renderer.extract.canvas(app.stage) as HTMLCanvasElement;
+        const dataUrl = canvas.toDataURL("image/png");
+        advplayer.showBackground();
+        const a = document.createElement("a");
+        a.href = dataUrl;
+        a.download = `wds-spine-${currentSpineId}.png`;
+        a.click();
+    });
+}
+
 // ===== Custom Mode Builder =====
-const KEY_BONE_NAMES = [
-    "root", "hip", "waist", "spine", "chest",
-    "neck", "head",
-    "arm_L", "forearm_L", "hand_L",
-    "arm_R", "forearm_R", "hand_R",
-    "thigh_L", "shin_L", "foot_L",
-    "thigh_R", "shin_R", "foot_R",
-];
 
 function buildCustomUI() {
     buildBoneSliders();
@@ -305,10 +313,8 @@ function buildBoneSliders() {
     }
 
     const boneNames = bones.map((b: any) => b.data.name as string);
-    const displayBones = KEY_BONE_NAMES.filter((name) => boneNames.includes(name));
-    const bonesToShow = displayBones.length > 0 ? displayBones : boneNames.slice(0, 20);
 
-    bonesToShow.forEach((boneName) => {
+    boneNames.forEach((boneName) => {
         const bone = bones.find((b: any) => b.data.name === boneName);
         if (!bone) return;
 

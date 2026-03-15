@@ -430,8 +430,13 @@
 <body>
   <div id="control-panel">
     <!-- Header -->
-    <div id="panel-header">
+    <div id="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
       <h3>WDS Spine Viewer</h3>
+      <button id="screenshot-btn" title="Capture sequence without background" style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 4px; transition: background 0.2s;">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#fff" d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm0-8.2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm9-2h-3.6l-1.6-2h-7.6l-1.6 2h-3.6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zM4 17V7h4.05l1.83-2h4.24l1.83 2H20v10H4z"/>
+         </svg>
+      </button>
     </div>
 
     <!-- Character Selector -->

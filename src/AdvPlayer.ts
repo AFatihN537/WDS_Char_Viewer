@@ -60,6 +60,14 @@ export class AdvPlayer extends Container<any> {
     this._effectView.clear();
   }
 
+  public hideBackground() {
+    this._backgroundView.visible = false;
+  }
+
+  public showBackground() {
+    this._backgroundView.visible = true;
+  }
+
   public async initModelViewer(spineId: number = 10101) {
     await this.clear();
 
