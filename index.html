@@ -8,7 +8,7 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>WDS Spine Viewer</title>
-  
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -44,7 +44,7 @@
       z-index: 9999;
       display: flex;
       flex-direction: column;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       overflow: hidden;
       transition: opacity 0.2s, transform 0.2s;
     }
@@ -62,7 +62,7 @@
       width: 40px;
       height: 40px;
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       background: rgba(0, 0, 0, 0.5);
       color: #fff;
       font-size: 18px;
@@ -83,7 +83,7 @@
 
     #panel-header {
       padding: 14px 16px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       flex-shrink: 0;
     }
 
@@ -97,7 +97,7 @@
     /* Character selector */
     .char-selector {
       padding: 10px 16px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
@@ -113,8 +113,8 @@
       flex: 1;
       padding: 7px 10px;
       border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
       color: #fff;
       font-size: 13px;
       font-family: 'Inter', sans-serif;
@@ -152,7 +152,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255, 255, 255, 0.35);
     }
 
     .char-selector button {
@@ -187,7 +187,7 @@
 
     .char-selector .api-status {
       font-size: 10px;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255, 255, 255, 0.3);
       text-align: center;
     }
 
@@ -203,10 +203,16 @@
       color: #4CAF50;
     }
 
+    .tab-preset select option {
+      color: #fff;
+      background: #1a1a2a;
+      font-weight: 400;
+    }
+
     /* ===== Tab System ===== */
     .tab-bar {
       display: flex;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       flex-shrink: 0;
     }
 
@@ -221,14 +227,14 @@
       cursor: pointer;
       border: none;
       background: transparent;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
       transition: color 0.2s, background 0.2s;
       position: relative;
     }
 
     .tab-btn:hover {
-      color: rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.03);
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .tab-btn.active {
@@ -266,7 +272,7 @@
     }
 
     .tab-content::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 2px;
     }
 
@@ -285,7 +291,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255, 255, 255, 0.45);
       margin-bottom: 6px;
     }
 
@@ -293,8 +299,8 @@
       width: 100%;
       padding: 8px 10px;
       border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
       color: #fff;
       font-size: 13px;
       font-family: 'Inter', sans-serif;
@@ -315,10 +321,10 @@
     .section-title {
       font-size: 12px;
       font-weight: 700;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255, 255, 255, 0.65);
       margin: 16px 0 10px;
       padding-bottom: 6px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -346,13 +352,13 @@
 
     .slider-item .slider-label {
       font-size: 11px;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255, 255, 255, 0.55);
       font-weight: 500;
     }
 
     .slider-item .slider-value {
       font-size: 10px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255, 255, 255, 0.35);
       font-variant-numeric: tabular-nums;
     }
 
@@ -360,7 +366,7 @@
       width: 100%;
       height: 4px;
       border-radius: 2px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       outline: none;
       -webkit-appearance: none;
       appearance: none;
@@ -374,7 +380,7 @@
       border-radius: 50%;
       background: #4CAF50;
       cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
       transition: transform 0.1s;
     }
 
@@ -393,8 +399,8 @@
       flex: 1;
       padding: 6px 8px;
       border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
       color: #fff;
       font-size: 12px;
       font-family: 'Inter', sans-serif;
@@ -404,8 +410,8 @@
       width: 55px;
       padding: 6px 8px;
       border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
       color: #fff;
       font-size: 12px;
       font-family: 'Inter', sans-serif;
@@ -424,14 +430,14 @@
 
     #custom-bones-container::-webkit-scrollbar-thumb,
     #custom-anims-container::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 2px;
     }
 
     /* Reset button (global) */
     .global-actions {
       padding: 10px 16px 14px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       flex-shrink: 0;
     }
 
@@ -470,7 +476,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.3px;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
       width: 32px;
       flex-shrink: 0;
     }
@@ -479,9 +485,9 @@
       flex: 1;
       padding: 5px 0;
       border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.6);
       font-size: 11px;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
@@ -491,9 +497,9 @@
     }
 
     .gesture-btn:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
-      border-color: rgba(255,255,255,0.25);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
     .gesture-btn.active {
@@ -506,7 +512,7 @@
     .empty-state {
       text-align: center;
       padding: 20px 0;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255, 255, 255, 0.3);
       font-size: 12px;
     }
   </style>
@@ -521,12 +527,15 @@
     <div id="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
       <h3>WDS Spine Viewer</h3>
       <div style="display:flex; gap:4px; align-items:center;">
-        <button id="screenshot-btn" title="Capture without background" style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 4px; transition: background 0.2s;">
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
-              <path fill="#fff" d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm0-8.2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm9-2h-3.6l-1.6-2h-7.6l-1.6 2h-3.6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zM4 17V7h4.05l1.83-2h4.24l1.83 2H20v10H4z"/>
-           </svg>
+        <button id="screenshot-btn" title="Capture without background"
+          style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 4px; transition: background 0.2s;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#fff"
+              d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm0-8.2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm9-2h-3.6l-1.6-2h-7.6l-1.6 2h-3.6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zM4 17V7h4.05l1.83-2h4.24l1.83 2H20v10H4z" />
+          </svg>
         </button>
-        <button id="collapse-btn" title="Hide panel" style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 4px; color: #fff; font-size: 16px; transition: background 0.2s;">✕</button>
+        <button id="collapse-btn" title="Hide panel"
+          style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 4px; color: #fff; font-size: 16px; transition: background 0.2s;">✕</button>
       </div>
     </div>
 
@@ -557,7 +566,7 @@
     </div>
 
     <!-- Preset tab -->
-    <div id="tab-preset" class="tab-content active">
+    <div id="tab-preset" class="tab-content active tab-preset">
       <div class="control-group">
         <label for="expression-select">Facial Expression</label>
         <select id="expression-select">
