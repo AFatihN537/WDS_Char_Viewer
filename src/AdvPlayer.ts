@@ -121,6 +121,14 @@ export class AdvPlayer extends Container<any> {
     this._characterView.resetToSetupPose();
   }
 
+  public setHandGesture(side: 'L' | 'R', type: string) {
+    this._characterView.setHandGesture(side, type);
+  }
+
+  public resetHandGestures() {
+    this._characterView.resetHandGestures();
+  }
+
   public get model() {
     return this._characterView.model;
   }

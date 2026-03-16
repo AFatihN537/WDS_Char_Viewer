@@ -281,6 +281,38 @@ export class AdventureAnimationStandCharacter {
         return this._model;
     }
 
+    setHandGesture(side: 'L' | 'R', type: string) {
+        const slotRegex = new RegExp(side + "[A-H]2?$");
+        const targetSuffix = side + type;
+
+        for (const slot of this._model.skeleton.slots) {
+            const slotName = slot.data.name;
+            if (!slotRegex.test(slotName)) continue;
+
+            const isActive = slotName.endsWith(targetSuffix) || slotName.endsWith(targetSuffix + "2");
+            const alphaValue = isActive ? 1 : 0;
+
+            Object.defineProperty(slot.color, 'a', {
+                get() { return alphaValue; },
+                set() { /* blocked — engine can't reset this */ },
+                configurable: true,
+                enumerable: true,
+            });
+        }
+
+        (this._model as any).spineAttachmentsDirty = true;
+    }
+
+    resetHandGestures() {
+        const slotRegex = /[LR][A-H]2?$/;
+        for (const slot of this._model.skeleton.slots) {
+            if (!slotRegex.test(slot.data.name)) continue;
+            // Restore normal property behavior
+            delete (slot.color as any).a;
+        }
+        (this._model as any).spineAttachmentsDirty = true;
+    }
+
     // --- End Deep Spine APIs ---
 
     destory(){

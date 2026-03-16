@@ -417,6 +417,55 @@
       border-color: rgba(239, 83, 80, 0.5);
     }
 
+    /* Hand gesture buttons */
+    .gesture-section {
+      margin-bottom: 12px;
+    }
+
+    .gesture-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .gesture-row .gesture-side-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.4);
+      width: 32px;
+      flex-shrink: 0;
+    }
+
+    .gesture-btn {
+      flex: 1;
+      padding: 5px 0;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .gesture-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    .gesture-btn.active {
+      background: rgba(76, 175, 80, 0.25);
+      border-color: #4CAF50;
+      color: #4CAF50;
+    }
+
     /* Empty state */
     .empty-state {
       text-align: center;
@@ -492,6 +541,11 @@
       <div class="section-title"><span class="icon">🦴</span> Bone Controllers</div>
       <div id="custom-bones-container">
         <div class="empty-state">Load a character to see bones</div>
+      </div>
+
+      <div class="section-title"><span class="icon">🤚</span> Hand Gestures</div>
+      <div id="custom-gestures-container" class="gesture-section">
+        <div class="empty-state">Load a character to see gestures</div>
       </div>
 
       <div class="section-title"><span class="icon">🎬</span> Animation Scrubbers</div>

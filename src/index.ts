@@ -299,7 +299,56 @@ if (screenshotBtn) {
 
 function buildCustomUI() {
     buildBoneSliders();
+    buildHandGestures();
     buildAnimationScrubbers();
+}
+
+const GESTURE_TYPES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+let activeGesture: Record<string, string> = { L: '', R: '' };
+
+function buildHandGestures() {
+    const container = document.getElementById("custom-gestures-container")!;
+    container.innerHTML = "";
+
+    (['L', 'R'] as const).forEach(side => {
+        const row = document.createElement("div");
+        row.className = "gesture-row";
+
+        const label = document.createElement("span");
+        label.className = "gesture-side-label";
+        label.textContent = side === 'L' ? 'Left' : 'Right';
+        row.appendChild(label);
+
+        GESTURE_TYPES.forEach(type => {
+            const btn = document.createElement("button");
+            btn.className = "gesture-btn";
+            btn.textContent = type;
+            if (activeGesture[side] === type) btn.classList.add("active");
+
+            btn.addEventListener("click", () => {
+                if (activeGesture[side] === type) {
+                    // Deactivate — restore normal alpha behavior
+                    activeGesture[side] = '';
+                    advplayer.resetHandGestures();
+                    // Re-apply the other side if it's still active
+                    if (activeGesture['L']) advplayer.setHandGesture('L', activeGesture['L']);
+                    if (activeGesture['R']) advplayer.setHandGesture('R', activeGesture['R']);
+                } else {
+                    activeGesture[side] = type;
+                    advplayer.setHandGesture(side, type);
+                }
+                // Refresh active state on all buttons in this row
+                row.querySelectorAll(".gesture-btn").forEach(b => b.classList.remove("active"));
+                if (activeGesture[side]) {
+                    btn.classList.add("active");
+                }
+            });
+
+            row.appendChild(btn);
+        });
+
+        container.appendChild(row);
+    });
 }
 
 function buildBoneSliders() {

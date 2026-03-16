@@ -249,6 +249,14 @@ export class CharacterView extends IView implements episodeExecutable{
         return this._currentViewerCharacter;
     }
 
+    public setHandGesture(side: 'L' | 'R', type: string) {
+        this._currentViewerCharacter?.setHandGesture(side, type);
+    }
+
+    public resetHandGestures() {
+        this._currentViewerCharacter?.resetHandGestures();
+    }
+
     public get model() {
         return this._currentViewerCharacter?.model;
     }
