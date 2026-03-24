@@ -20,6 +20,8 @@ export async function createApp(preference: 'webgl' | 'webgpu' = 'webgpu') {
       hello : false,
       resizeTo: window,
       backgroundAlpha: 0,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
     });
 
     currenRenderer = pixiapp.renderer.name;

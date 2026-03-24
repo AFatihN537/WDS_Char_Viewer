@@ -66,59 +66,52 @@ export class AdventureAnimationStandCharacter {
 
     changePosition(position: CharacterPositions) {
         this._characterPosition = position;
-        const sw = window.innerWidth;
-        // Center offsets can be scaled by innerWidth if we want true responsiveness, or kept somewhat fixed.
-        // Let's use relative offset to ensure they don't shift off-screen on mobile.
-        const offsetInner = Math.min(200, sw * 0.15);
-        const offsetOuter = Math.min(320, sw * 0.25);
+        
+        const offsetInner = 200;
+        const offsetOuter = 320;
         
         switch (position) {
             case CharacterPositions.Center:
-                this._model.x = sw / 2;
+                this._model.x = 0;
                 this._model.zIndex = 0;
                 break;
             case CharacterPositions.InnerLeft:
-                this._model.x = sw / 2 - offsetInner;
+                this._model.x = -offsetInner;
                 this._model.zIndex = 1
                 break;
             case CharacterPositions.InnerRight:
-                this._model.x = sw / 2 + offsetInner;
+                this._model.x = offsetInner;
                 this._model.zIndex = -1
                 break;
             case CharacterPositions.OuterLeft:
-                this._model.x = sw / 2 - offsetOuter;
+                this._model.x = -offsetOuter;
                 this._model.zIndex = 1
                 break;
             case CharacterPositions.OuterRight:
-                this._model.x = sw / 2 + offsetOuter;
+                this._model.x = offsetOuter;
                 this._model.zIndex = -1
                 break;
             default:
-                this._model.x = sw / 2;
+                this._model.x = 0;
                 break;
         }
     }
 
     resize() {
         if (!this._model) return;
-        const sw = window.innerWidth;
-        const sh = window.innerHeight;
-        
-        // Base scale proportion references standard 1440 height (old 3:4 canvas)
-        const scaleRatio = Math.min(sw / 1080, sh / 1440) || 1;
         
         switch (this._loopMotionData?.Size ?? 1) {
             case 1:
-                this._model.scale.set(0.77 * scaleRatio);
-                this._model.y = sh * 0.7; // Approx 1000/1440
+                this._model.scale.set(0.77);
+                this._model.y = 0;
                 break;
             case 2:
-                this._model.scale.set(0.79 * scaleRatio);
-                this._model.y = sh * 0.75 + ((158 - (this._loopMotionData?.Height || 158)) * 6 * scaleRatio);
+                this._model.scale.set(0.79);
+                this._model.y = ((158 - (this._loopMotionData?.Height || 158)) * 6);
                 break;
             default:
-                this._model.scale.set(0.79 * scaleRatio);
-                this._model.y = sh * 0.75;
+                this._model.scale.set(0.79);
+                this._model.y = 0;
                 break;
         }
         

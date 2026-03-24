@@ -167,7 +167,17 @@ export class CharacterView extends IView implements episodeExecutable{
     }
 
     resizeCharacter() {
-        this._standCharacters.forEach(char => char.resize());
+        const sw = window.innerWidth;
+        const sh = window.innerHeight;
+        
+        // Character scale based squarely on ideal vertical framing
+        const idealHeight = 1440;
+        const scale = sh / idealHeight;
+        
+        // Maintain pure uniform scale (aspect ratio) and central anchoring 
+        this.scale.set(scale); 
+        this.x = sw / 2;
+        this.y = sh * 0.75; 
     }
 
     // --- Spine Viewer Controls ---
@@ -185,6 +195,9 @@ export class CharacterView extends IView implements episodeExecutable{
         
         this._currentViewerCharacter = model;
         this._standCharacters.set(`${spineId}`, model);
+        
+        // Force resize on initial creation to prevent layout bugs
+        this.resizeCharacter();
     }
 
     public setExpression(expressionId: number) {

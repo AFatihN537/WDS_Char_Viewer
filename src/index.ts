@@ -49,6 +49,7 @@ let currentMode: "preset" | "custom" = "preset";
 let spineRegistry: SpineRegistry = {};
 
 await advplayer.initModelViewer(currentSpineId);
+window.dispatchEvent(new Event('wds-resize'));
 
 window.addEventListener('wds-resize', () => {
     advplayer.resizeBackground();
@@ -177,6 +178,7 @@ loadButton.addEventListener("click", async () => {
     try {
         currentSpineId = spineId;
         await advplayer.initModelViewer(currentSpineId);
+        window.dispatchEvent(new Event('wds-resize'));
 
         // Reset preset dropdowns
         if (expressionSelect) expressionSelect.value = "";
